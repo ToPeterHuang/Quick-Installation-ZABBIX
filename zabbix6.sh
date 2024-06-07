@@ -1,11 +1,8 @@
 #!/bin/bash
-# Author: 火星小刘 / 中国青岛
 # Install Zabbix 6.0 on CentOS, Rocky Linux, Debian, or Ubuntu
 
-echo -e "\e[32mAuthor: \e[0m\e[33m火星小刘 / 中国青岛\e[0m"
-echo -e "\e[32m作者github: \e[0m\e[33mhttps://github.com/X-Mars/\e[0m"
-echo -e "\e[32m跟作者学运维开发: \e[0m\e[33mhttps://space.bilibili.com/439068477\e[0m"
-echo -e "\e[32m本项目地址: \e[0m\e[33mhttps://github.com/X-Mars/Quick-Installation-ZABBIX\e[0m"
+echo -e "\e[32mAuthor: \e[0m\e[33m资讯知识一点通 / 广州分资讯课\e[0m"
+echo -e "\e[32m本项目地址: \e[0m\e[33mhttps://github.com/topeterhuang/Quick-Installation-ZABBIX\e[0m"
 echo -e "\e[32m当前脚本介绍: \e[0m\e[33mZabbix 6.0安装脚本\e[0m"
 echo -e "\e[32m支持的操作系统: \e[0m\e[33mcentos 8 / centos 9 / rocky linux 8 / rocky linux 9 / ubuntu 20.04 / ubuntu 22.04 / debian 11 / debian 12\e[0m"
 
@@ -108,13 +105,13 @@ install_mariadb_release() {
 init_database() {
   echo '初始化数据库...'
   echo "create database zabbix character set utf8mb4 collate utf8mb4_bin;" | mariadb -uroot
-  echo "create user zabbix@localhost identified by 'huoxingxiaoliu';" | mariadb -uroot
+  echo "create user zabbix@localhost identified by 'gzfzixun';" | mariadb -uroot
   echo "grant all privileges on zabbix.* to zabbix@localhost;" | mariadb -uroot
   echo "set global log_bin_trust_function_creators = 1;" | mariadb -uroot
 
   # 导入初始化数据
   zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mariadb --default-character-set=utf8mb4 -uzabbix -phuoxingxiaoliu zabbix
-  sed -i 's/# DBPassword=/DBPassword=huoxingxiaoliu/g' /etc/zabbix/zabbix_server.conf
+  sed -i 's/# DBPassword=/DBPassword=gzfzixun/g' /etc/zabbix/zabbix_server.conf
   echo "set global log_bin_trust_function_creators = 0;" | mariadb -uroot
 }
 
@@ -148,14 +145,12 @@ change_font_to_chinese() {
 
 notification() {
 
-  echo -e "\e[32mAuthor: \e[0m\e[33m火星小刘 / 中国青岛\e[0m"
-  echo -e "\e[32m作者github: \e[0m\e[33mhttps://github.com/X-Mars/\e[0m"
-  echo -e "\e[32m跟作者学运维开发: \e[0m\e[33mhttps://space.bilibili.com/439068477\e[0m"
-  echo -e "\e[32m本项目地址: \e[0m\e[33mhttps://github.com/X-Mars/Quick-Installation-ZABBIX\e[0m"
+  echo -e "\e[32mAuthor: \e[0m\e[33m资讯知识一点通 / 广州分资讯课\e[0m"
+  echo -e "\e[32m本项目地址: \e[0m\e[33mhttps://github.com/topeterhuang/Quick-Installation-ZABBIX\e[0m"
   echo -e "\e[32m当前脚本介绍: \e[0m\e[33mZabbix 6.0安装脚本\e[0m"
   echo -e "\e[32m支持的操作系统: \e[0m\e[33mcentos 8 / centos 9 / rocky linux 8 / rocky linux 9 / ubuntu 20.04 / ubuntu 22.04 / debian 11 / debian 12\e[0m"
 
-  echo -e "\n\e[31m数据库root用户默认密码为空,zabbix用户默认密码 huoxingxiaoliu\e[0m"
+  echo -e "\n\e[31m数据库root用户默认密码为空,zabbix用户默认密码 gzfzixun\e[0m"
 
   # 获取ip
   if command -v ip &> /dev/null; then
@@ -183,8 +178,6 @@ notification() {
 
 
 add_wechat_dingtalk_feishu_scripts() {
-  echo -e "\n\e[31m拉取企业微信、钉钉、飞书告警脚本,具体查看: https://github.com/X-Mars/Zabbix-Alert-WeChat\e[0m"
-  echo -e "\e[31m此操作不影响zabbix使用\e[0m"
   echo -e "\e[31m运行命令: ls -la /usr/lib/zabbix/alertscripts 查看脚本\e[0m"
   git clone https://github.com/X-Mars/Zabbix-Alert-WeChat.git /usr/lib/zabbix/alertscripts
   ls -la /usr/lib/zabbix/alertscripts
