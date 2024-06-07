@@ -164,7 +164,7 @@ notification() {
 
 add_wechat_dingtalk_feishu_scripts() {
   echo -e "\e[31m运行命令: ls -la /usr/lib/zabbix/alertscripts 查看脚本\e[0m"
-  git clone https://github.com/X-Mars/Zabbix-Alert-WeChat.git /usr/lib/zabbix/alertscripts
+  git clone https://github.com/topeterhuang/Zabbix-Alert-WeChat.git /usr/lib/zabbix/alertscripts
   ls -la /usr/lib/zabbix/alertscripts
 }
 
