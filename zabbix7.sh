@@ -96,7 +96,7 @@ init_database() {
   echo "set global log_bin_trust_function_creators = 1;" | mariadb -uroot
 
   # 导入初始化数据
-  zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mariadb --default-character-set=utf8mb4 -uzabbix -phuoxingxiaoliu zabbix
+  zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mariadb --default-character-set=utf8mb4 -uzabbix -pgzfzixun zabbix
   sed -i 's/# DBPassword=/DBPassword=gzfzixun/g' /etc/zabbix/zabbix_server.conf
   echo "set global log_bin_trust_function_creators = 0;" | mariadb -uroot
 }
